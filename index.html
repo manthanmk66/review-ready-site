@@ -473,5 +473,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" defer></script>
     <script src="./app.js" defer></script>
+
+    <!-- Vercel Analytics (static-site flavor) — private dashboard at vercel.com/analytics -->
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
   </body>
 </html>
