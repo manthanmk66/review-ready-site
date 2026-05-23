@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <title>Review Ready — pre-submission compliance auditor for iOS &amp; Android</title>
+    <meta
+      name="description"
+      content="A Claude Code plugin that scans your mobile app for every Apple App Store Review Guideline and Google Play Developer Policy issue — before you submit."
+    />
+    <meta property="og:title" content="Review Ready" />
+    <meta
+      property="og:description"
+      content="Stop guessing what will get your app rejected. Scan your Expo / React Native / iOS / Android project first."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f1413'/%3E%3Cpath d='M8 12l4 4-4 4M16 20h8' stroke='%2364e88a' stroke-width='2' stroke-linecap='square' fill='none'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" role="banner">
+      <div class="nav__inner">
+        <a class="nav__brand" href="#top" aria-label="Review Ready, home">
+          <span class="nav__brand-mark" aria-hidden="true">$</span>
+          <span class="nav__brand-name">review-ready</span>
+          <span class="nav__brand-version" data-version>v0.3.0</span>
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <a href="#what">What it catches</a>
+          <a href="#commands">Commands</a>
+          <a href="#install">Install</a>
+          <a href="#changelog">Changelog</a>
+          <a
+            class="nav__github"
+            href="https://github.com/manthanmk66/review-ready"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub repository"
+          >
+            <span data-stars>★ —</span>
+            <span class="nav__github-label">GitHub</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <a id="top"></a>
+
+      <!-- HERO · Workbench: left positioning, right artifact -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <p class="eyebrow">
+              <span class="dot" aria-hidden="true"></span>
+              Claude Code plugin · public beta
+            </p>
+            <h1 id="hero-h" class="hero__h">
+              Find every reason your app<br />
+              will get rejected.<br />
+              <span class="hero__h-accent">Before you submit.</span>
+            </h1>
+            <p class="hero__lede">
+              <span class="mark">review-ready</span> runs five parallel auditors over your
+              Expo, React Native, iOS, or Android project and returns a severity-ranked
+              list of every Apple and Google policy issue — with the exact
+              <code>file:line</code> and the fix.
+            </p>
+            <div class="hero__cta">
+              <button
+                class="btn btn--primary"
+                type="button"
+                data-copy="/plugin install review-ready"
+                aria-label="Copy install command"
+              >
+                <span class="btn__prompt">$</span>
+                <span class="btn__cmd">/plugin install review-ready</span>
+                <span class="btn__hint" data-copy-hint>copy</span>
+              </button>
+              <a
+                class="btn btn--ghost"
+                href="https://github.com/manthanmk66/review-ready"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>View on GitHub</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <p class="hero__meta" data-updated>
+              Loading latest release&hellip;
+            </p>
+          </div>
+
+          <div class="hero__artifact" aria-hidden="true">
+            <div class="term">
+              <div class="term__bar">
+                <span>~/acme-app · /review-ready:scan</span>
+                <span class="term__bar-tag">live</span>
+              </div>
+              <div class="term__body">
+                <p><span class="term__prompt">$</span> /review-ready:scan</p>
+                <p class="term__dim">› spawning 5 parallel auditors&hellip;</p>
+                <p class="term__dim">› privacy-auditor &nbsp;&nbsp;&nbsp;&nbsp;✓ 12 checks</p>
+                <p class="term__dim">› iap-business-auditor&nbsp; ✓ 8 checks</p>
+                <p class="term__dim">› permissions-auditor &nbsp;✓ 9 checks</p>
+                <p class="term__dim">› metadata-auditor &nbsp;&nbsp;&nbsp;✓ 11 checks</p>
+                <p class="term__dim">› crash-risk-auditor &nbsp;&nbsp;✓ 7 checks</p>
+                <p>&nbsp;</p>
+                <p><span class="term__heading"># Review Ready — Audit Report</span></p>
+                <p>Project: <span class="term__val">Acme</span></p>
+                <p>Stack: <span class="term__val">Expo SDK 54 / RN 0.81</span></p>
+                <p>Apple Store: <span class="term__bad">2 blockers</span>, 3 high, 4 medium</p>
+                <p>Google Play: 0 blockers, 1 high, <span class="term__warn">2 medium</span></p>
+                <p>&nbsp;</p>
+                <p><span class="term__bad">🛑 1. Missing NSCameraUsageDescription</span></p>
+                <p class="term__indent">Guideline: <span class="term__val">Apple 5.1.1</span></p>
+                <p class="term__indent">Where: <span class="term__val">app.json:15</span></p>
+                <p class="term__indent">Fix: add "NSCameraUsageDescription" to ios.infoPlist</p>
+                <p class="term__indent term__good">Auto-fix available — run /review-ready:fix</p>
+                <p>&nbsp;</p>
+                <p><span class="term__bad">🛑 2. Encryption Export Compliance not declared</span></p>
+                <p class="term__indent">Guideline: <span class="term__val">Apple 5.4</span></p>
+                <p class="term__indent term__good">Auto-fix available</p>
+                <p>&nbsp;</p>
+                <p><span class="term__cursor">▍</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COST · honest framing, no invented metrics. Source: README -->
+      <section class="cost" aria-labelledby="cost-h">
+        <div class="container">
+          <p class="eyebrow eyebrow--quiet">The rejection tax</p>
+          <h2 id="cost-h" class="section-h">
+            Every rejection cycle eats <span class="hero__h-accent">a week of momentum</span>.
+          </h2>
+          <div class="cost__row">
+            <div class="cost__cell">
+              <p class="cost__num">24–48h</p>
+              <p class="cost__label">average wait per review cycle</p>
+            </div>
+            <div class="cost__cell">
+              <p class="cost__num">2–4×</p>
+              <p class="cost__label">rejection cycles per iOS submission</p>
+            </div>
+            <div class="cost__cell">
+              <p class="cost__num">~1 wk</p>
+              <p class="cost__label">of momentum lost per cycle</p>
+            </div>
+            <div class="cost__cell">
+              <p class="cost__num">90%+</p>
+              <p class="cost__label">of rejections are the same handful of issues</p>
+            </div>
+          </div>
+          <p class="cost__foot">
+            Source: ranges drawn from the project README. Your mileage varies.
+          </p>
+        </div>
+      </section>
+
+      <!-- WHAT IT CATCHES · feature grid, archetype F-grid -->
+      <section id="what" class="catches" aria-labelledby="catches-h">
+        <div class="container">
+          <p class="eyebrow">What it catches</p>
+          <h2 id="catches-h" class="section-h">
+            Every blocker the reviewers actually flag.
+          </h2>
+          <p class="section-lede">
+            The knowledge base is compiled from Apple's App Store Review Guidelines,
+            Google's Play Developer Policy, and a corpus of real rejection emails.
+            Updated against the published rules as of <strong>May 2026</strong>.
+          </p>
+
+          <ul class="catches__grid" role="list">
+            <li class="catches__item">
+              <p class="catches__cat">Apple 5.1 · Privacy</p>
+              <p class="catches__t">Privacy manifest gaps</p>
+              <p class="catches__d">
+                The #1 source of <code>ITMS-91053</code> emails. Detects missing
+                <code>PrivacyInfo.xcprivacy</code>, undeclared Required Reason API usage,
+                ATT setup mismatches.
+              </p>
+            </li>
+            <li class="catches__item">
+              <p class="catches__cat">Apple 5.1.1 · Permissions</p>
+              <p class="catches__t">Usage strings missing or too generic</p>
+              <p class="catches__d">
+                Cross-references your <code>app.json</code> dependencies against required
+                <code>NS*UsageDescription</code> keys. Flags strings under 50 chars or
+                lacking concrete consequence.
+              </p>
+            </li>
+            <li class="catches__item">
+              <p class="catches__cat">Apple 3.1 · IAP</p>
+              <p class="catches__t">IAP bypass attempts</p>
+              <p class="catches__d">
+                Auto-rejection trigger. Detects Stripe / external links / web-only checkout
+                used for digital goods where StoreKit is required.
+              </p>
+            </li>
+            <li class="catches__item">
+              <p class="catches__cat">Apple 5.1.1(v) · Account</p>
+              <p class="catches__t">Account deletion missing</p>
+              <p class="catches__d">
+                Required since 2022. Detects sign-in flows without an in-app delete path
+                and flags the route you need to add.
+              </p>
+            </li>
+            <li class="catches__item">
+              <p class="catches__cat">Apple 4.8 · Sign in with Apple</p>
+              <p class="catches__t">Third-party login without SiwA</p>
+              <p class="catches__d">
+                Flags Firebase Auth, Supabase, Auth0, Cognito, Clerk — including
+                phone-OTP-only flows (per the 2024–2026 reviewer interpretation).
+              </p>
+            </li>
+            <li class="catches__item">
+              <p class="catches__cat">Google · Target SDK</p>
+              <p class="catches__t">SDK / 64-bit / 16 KB compliance</p>
+              <p class="catches__d">
+                Detects target SDK below the current Play floor, missing 64-bit builds,
+                and the 2026 16 KB page-size deadline.
+              </p>
+            </li>
+            <li class="catches__item">
+              <p class="catches__cat">Google · Permissions</p>
+              <p class="catches__t">Foreground service type missing</p>
+              <p class="catches__d">
+                Every <code>FOREGROUND_SERVICE_*</code> permission needs a declared type
+                in the manifest, or your release is auto-rejected.
+              </p>
+            </li>
+            <li class="catches__item">
+              <p class="catches__cat">Google · Data Safety</p>
+              <p class="catches__t">Data Safety form misalignment</p>
+              <p class="catches__d">
+                Compares the SDKs your app ships against your declared data-collection
+                form. Misalignment is the most common Play takedown.
+              </p>
+            </li>
+            <li class="catches__item">
+              <p class="catches__cat">Stability · 2.1</p>
+              <p class="catches__t">Crash patterns &amp; dev artifacts</p>
+              <p class="catches__d">
+                Localhost URLs, debug flags left enabled, force-unwraps, console
+                warnings — anything reviewers will reproduce on first launch.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- COMMANDS · three command cards -->
+      <section id="commands" class="cmds" aria-labelledby="cmds-h">
+        <div class="container">
+          <p class="eyebrow">The three commands</p>
+          <h2 id="cmds-h" class="section-h">One scan, one fast check, one fixer.</h2>
+
+          <div class="cmds__grid">
+            <article class="cmd-card">
+              <header class="cmd-card__head">
+                <p class="cmd-card__name">/review-ready:scan</p>
+                <p class="cmd-card__time">full · ~2 min</p>
+              </header>
+              <p class="cmd-card__d">
+                Spawns five parallel subagents — privacy, IAP, permissions, metadata,
+                crash-risk — and returns a severity-ranked report with exact
+                <code>file:line</code> references and fixes.
+              </p>
+              <ul class="cmd-card__list" role="list">
+                <li>privacy-auditor</li>
+                <li>iap-business-auditor</li>
+                <li>permissions-auditor</li>
+                <li>metadata-auditor</li>
+                <li>crash-risk-auditor</li>
+              </ul>
+            </article>
+
+            <article class="cmd-card cmd-card--accent">
+              <header class="cmd-card__head">
+                <p class="cmd-card__name">/review-ready:precheck</p>
+                <p class="cmd-card__time">fast · ~30s</p>
+              </header>
+              <p class="cmd-card__d">
+                The top-10 blockers only. Run this right before you hit
+                <em>Submit for Review</em>. If it's clean, you're clean.
+              </p>
+              <ul class="cmd-card__list" role="list">
+                <li>blocker-grade issues only</li>
+                <li>no medium / info noise</li>
+                <li>30-second feedback loop</li>
+              </ul>
+            </article>
+
+            <article class="cmd-card">
+              <header class="cmd-card__head">
+                <p class="cmd-card__name">/review-ready:fix</p>
+                <p class="cmd-card__time">auto · safe edits</p>
+              </header>
+              <p class="cmd-card__d">
+                Auto-applies the safe fixes from the latest scan: missing usage strings,
+                encryption export flag, <code>PrivacyInfo.xcprivacy</code> stub, ATT
+                wiring for expo-tracking-transparency.
+              </p>
+              <ul class="cmd-card__list" role="list">
+                <li>only touches safe deltas</li>
+                <li>previews every change first</li>
+                <li>respects existing config</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- INSTALL -->
+      <section id="install" class="install" aria-labelledby="install-h">
+        <div class="container">
+          <p class="eyebrow">Install</p>
+          <h2 id="install-h" class="section-h">One command. Restart Claude Code. Done.</h2>
+
+          <div class="install__pair">
+            <div class="install__col">
+              <p class="install__label">via the marketplace</p>
+              <div class="codeblock" data-copy-block>
+                <pre><span class="codeblock__prompt">$</span> <code>/plugin install review-ready</code></pre>
+                <button class="codeblock__copy" type="button" data-copy="/plugin install review-ready" aria-label="Copy install command">copy</button>
+              </div>
+              <p class="install__note">Available from the Claude Code plugin marketplace.</p>
+            </div>
+            <div class="install__col">
+              <p class="install__label">locally, for development</p>
+              <div class="codeblock" data-copy-block>
+                <pre><span class="codeblock__prompt">$</span> <code>git clone https://github.com/manthanmk66/review-ready ~/.claude/plugins/review-ready</code></pre>
+                <button class="codeblock__copy" type="button" data-copy="git clone https://github.com/manthanmk66/review-ready ~/.claude/plugins/review-ready" aria-label="Copy clone command">copy</button>
+              </div>
+              <p class="install__note">Clone into your Claude plugins folder for live editing.</p>
+            </div>
+          </div>
+
+          <div class="stacks">
+            <p class="stacks__h">Supported stacks</p>
+            <ul class="stacks__list" role="list">
+              <li><span class="stacks__dot stacks__dot--on"></span> Expo (managed)</li>
+              <li><span class="stacks__dot stacks__dot--on"></span> Expo (bare)</li>
+              <li><span class="stacks__dot stacks__dot--on"></span> React Native CLI</li>
+              <li><span class="stacks__dot stacks__dot--on"></span> Native iOS (Swift / Obj-C)</li>
+              <li><span class="stacks__dot stacks__dot--on"></span> Native Android (Kotlin / Java)</li>
+              <li><span class="stacks__dot stacks__dot--soon"></span> Flutter <em>· v0.2</em></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIVE CHANGELOG · fetched from GitHub raw -->
+      <section id="changelog" class="changelog" aria-labelledby="changelog-h">
+        <div class="container">
+          <p class="eyebrow">
+            <span class="live-dot" aria-hidden="true"></span>
+            Live from
+            <a
+              href="https://github.com/manthanmk66/review-ready/blob/main/CHANGELOG.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              >CHANGELOG.md</a
+            >
+          </p>
+          <h2 id="changelog-h" class="section-h">Updates ship on every push to main.</h2>
+          <p class="section-lede">
+            The list below is pulled directly from the repository on page load. If you've
+            just pushed a release and don't see it, GitHub's raw CDN cache clears within
+            about five minutes.
+          </p>
+
+          <div class="changelog__body" data-changelog>
+            <p class="loading">Fetching latest changelog from GitHub&hellip;</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot" role="contentinfo">
+      <div class="container foot__grid">
+        <div class="foot__main">
+          <p class="foot__h">
+            Built by mobile leads,<br />
+            for mobile leads.
+          </p>
+          <p class="foot__sub">
+            Encoded the institutional knowledge of teams who've already paid the
+            rejection tax. Free, open source, MIT.
+          </p>
+        </div>
+        <div class="foot__links">
+          <p class="foot__col-h">Repo</p>
+          <a
+            href="https://github.com/manthanmk66/review-ready"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+          <a
+            href="https://github.com/manthanmk66/review-ready/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Report an issue</a
+          >
+          <a
+            href="https://github.com/manthanmk66/review-ready/blob/main/PRIVACY.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Privacy</a
+          >
+          <a
+            href="https://github.com/manthanmk66/review-ready/blob/main/LICENSE"
+            target="_blank"
+            rel="noopener noreferrer"
+            >License (MIT)</a
+          >
+        </div>
+        <div class="foot__links">
+          <p class="foot__col-h">References</p>
+          <a
+            href="https://developer.apple.com/app-store/review/guidelines/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Apple Review Guidelines</a
+          >
+          <a
+            href="https://play.google/developer-content-policy/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Play Developer Policy</a
+          >
+          <a
+            href="https://claude.com/claude-code"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Claude Code</a
+          >
+        </div>
+      </div>
+      <div class="container foot__base">
+        <p>© <span data-year></span> Review Ready · MIT licensed</p>
+        <p>
+          <a href="https://github.com/manthanmk66/review-ready" target="_blank" rel="noopener noreferrer">v<span data-version-foot>0.3.0</span></a>
+          ·
+          <span data-last-commit>commits loading&hellip;</span>
+        </p>
+      </div>
+    </footer>
+
+    <div
+      class="toast"
+      role="status"
+      aria-live="polite"
+      data-toast
+      hidden
+    >
+      copied
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" defer></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
