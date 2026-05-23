@@ -15,6 +15,9 @@
       content="Stop guessing what will get your app rejected. Scan your Expo / React Native / iOS / Android project first."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="./rr-logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="./rr-logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,7 +25,8 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
     />
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f1413'/%3E%3Cpath d='M8 12l4 4-4 4M16 20h8' stroke='%2364e88a' stroke-width='2' stroke-linecap='square' fill='none'/%3E%3C/svg%3E" />
+    <link rel="icon" type="image/png" href="./rr-logo.png" />
+    <link rel="apple-touch-icon" href="./rr-logo.png" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -30,7 +34,14 @@
     <header class="nav" role="banner">
       <div class="nav__inner">
         <a class="nav__brand" href="#top" aria-label="Review Ready, home">
-          <span class="nav__brand-mark" aria-hidden="true">$</span>
+          <img
+            class="nav__brand-logo"
+            src="./rr-logo.png"
+            alt=""
+            width="28"
+            height="28"
+            onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'nav__brand-mark',textContent:'$','aria-hidden':'true'}))"
+          />
           <span class="nav__brand-name">review-ready</span>
           <span class="nav__brand-version" data-version>v0.3.0</span>
         </a>

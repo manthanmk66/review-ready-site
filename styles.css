@@ -203,6 +203,13 @@ code {
 .nav__brand-mark {
   color: var(--color-accent);
 }
+.nav__brand-logo {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+  vertical-align: middle;
+}
 .nav__brand-name {
   color: var(--color-ink);
 }
